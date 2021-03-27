@@ -32,7 +32,7 @@ The following list ilustrates how to run the code locally.
 2. Create a virtual environment and activate it
     * Create virtual environment with venv
       ```sh
-      python -m venv venv
+      python3 -m venv venv
       ```
       
     Activate using Powershell
@@ -54,8 +54,8 @@ The following list ilustrates how to run the code locally.
 
 3. Upgrade pip and install project's requirenments
    ```sh
-    pip install --upgrade pip
-    pip install -r requirenments.txt 
+    pip3 install --upgrade pip
+    pip3 install -r requirenments.txt 
     ```
 4. Create the following environment variables:
   * It is important not to hardcode the api keys directly in any source file

@@ -15,6 +15,7 @@ class Permission:
     MAP_MONITORING = 128
     ADD_USERS = 256
     APP_SETTINGS = 512
+    ADMIN_MANAGE = 1024
 
 
 class Role(db.Model):
@@ -55,7 +56,7 @@ class Role(db.Model):
                            Permission.MAP_MONITORING],
             'Administrator': [Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
                               Permission.LOAD_BALANCING, Permission.BULK_CHANGE, Permission.DC_SWITCHOVER,
-                              Permission.MAP_MONITORING, Permission.ADD_USERS, Permission.APP_SETTINGS]
+                              Permission.MAP_MONITORING, Permission.ADD_USERS, Permission.APP_SETTINGS, Permission.ADMIN_MANAGE]
         }
         default_role = 'View-only'
 

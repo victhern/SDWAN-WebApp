@@ -4,16 +4,27 @@ import math
 from . import dashboard_api_v0, dashboard_api_v1, organization_data
 
 
-def get_apiuser_name (api_key, organization_id):
-    apiUserId = getApiId(api_key, organization_id)
-        # Get Org Admins to find the matching one
-    admins = getorgadmins(apikey, orgid) 
-    apiUser = admins[0]
+def get_apiuser_name(api_key, organization_id):
+    # Get API ID from last request
+    apiUserIds = dashboard_api_v0.getApiId(api_key, organization_id)
+    # Get Org Admins to find the matching one
+    admins = dashboard_api_v0.getorgadmins(api_key, organization_id) 
+    for apiUserId in apiUserIds:
+          for key, value in apiUserId.items():
+            if key == 'adminId':
+                apiId = value
+            else:
+                continue
 
-    for i in admins:
-          if admins[i].id == apiUserId.adminId:
-               apiUser = admins[i]
-    return apiUser.get('name')
+    for admin in admins:
+          for key, value in admin.items():
+            if key == 'id':
+                if apiId == value:
+                    apiUser_name = admin['name']
+            else:
+                continue
+
+    return apiUser_name
 
 def get_org_name(api_key, organization_id):
     organization = dashboard_api_v0.getorg(api_key, organization_id)

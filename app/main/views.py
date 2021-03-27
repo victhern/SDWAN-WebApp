@@ -521,7 +521,7 @@ def update_appliance_vpn():
     return redirect('/switchover')
 
 
-# Map Monitoring module
+# SD-WAN Monitoring module
 @main.route('/monitoring', methods=['GET'])
 @login_required
 @permission_required(Permission.MAP_MONITORING)
@@ -537,9 +537,27 @@ def map_monitoring():
                                                                     organization_data.loss_tolerance,
                                                                     organization_data.latency_tolerance, False)
 
-    return render_template('monitoring.html', tabSubject="Map Monitoring")
+    return render_template('monitoring.html', tabSubject="SD-WAN Monitoring")
 
+# Admin Management module
+@main.route('/adminMgmt', methods=['GET'])
+@login_required
+@permission_required(Permission.ADMIN_MANAGE)
+def admin_management():
+    faulty_filter = request.args.get('filter')
+    if faulty_filter is not None:
+        if "True" in faulty_filter:
+            organization_data.valued_networks = helpers.valued_networks(organization_data.filtered_uplinks,
+                                                                        organization_data.loss_tolerance,
+                                                                        organization_data.latency_tolerance, True)
+    else:
+        organization_data.valued_networks = helpers.valued_networks(organization_data.filtered_uplinks,
+                                                                    organization_data.loss_tolerance,
+                                                                    organization_data.latency_tolerance, False)
 
+    return render_template('adminManage.html', tabSubject="Admin Management")
+
+# App Settings module
 @main.route('/appSettings', methods=['GET', 'POST'])
 @login_required
 @permission_required(Permission.APP_SETTINGS)

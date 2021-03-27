@@ -6,7 +6,7 @@ from app import helpers
 def init():
     global api_key, organization_id, here_maps_api_key, loss_tolerance, latency_tolerance, organization_name, \
         logo_path, ALLOWED_EXTENSIONS, networks, clean_networks, clean_networks_dict, hubs, clean_hubs, filtered_uplinks, \
-        valued_networks, templates, clean_templates, hub_choices, tag_choices, latest_notifications, organizations, clean_organizations
+        valued_networks, templates, clean_templates, hub_choices, tag_choices, latest_notifications, apiUserName, organizations, clean_organizations
 
     # Load api keys
     api_key = os.getenv("MERAKI_API_KEY")

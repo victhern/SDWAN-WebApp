@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Map Monitoring{% endblock %}
+{% block title %}SD-WAN Monitoring{% endblock %}
 
 {% block page_content %}
 
@@ -58,7 +58,7 @@
             {% if current_user.can(Permission.APP_SETTINGS) %}
             <div class="card">
                   <div class="card-body">
-                        <p>You can customize Latency and Packet Loss threshold values at the <a href="/appSettings" class="btn btn-secondary btn-block">settings</a> page</p>
+                        <p>You can customize Latency and Packet Loss threshold values at the <a href="/appSettings">settings</a> page</p>
                   </div>
             </div>
             {% endif %}

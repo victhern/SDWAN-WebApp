@@ -32,7 +32,7 @@ The following list ilustrates how to run the code locally.
 2. Create a virtual environment and activate it
     * Create virtual environment with venv
       ```sh
-      python3 -m venv venv
+      python3 -m venv webApp-env
       ```
       
     Activate using Powershell
@@ -44,12 +44,12 @@ The following list ilustrates how to run the code locally.
       * In the project folder, ensure the venv directory was created
       * Activate the virtual environment using       
         ```powershell
-        . .\venv\Scripts\Activate.ps1
+         .\webApp-env\Scripts\Activate.ps1
         ```        
-    Activate using Linux
+   On Unix or MacOS, run:
       * In a terminal window, cd to the project directory and run:        
-        ```bsh
-        . venv/bin/activate
+        ```
+        source webApp-env/bin/activate
         ```
 
 3. Upgrade pip and install project's requirenments

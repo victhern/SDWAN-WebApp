@@ -28,11 +28,11 @@ After wirting the information required and uploading the company logo, it is nec
 ## How to run:
 The following list ilustrates how to run the code locally.
 
-1. Clone this repository https://github.com/jperezsan/meraki-webapp-flask
+1. Clone this repository https://github.com/victhern/CxaMeraki-WebApp
 2. Create a virtual environment and activate it
     * Create virtual environment with venv
       ```sh
-      python -m venv venv
+      python3 -m venv webApp-env
       ```
       
     Activate using Powershell
@@ -44,18 +44,18 @@ The following list ilustrates how to run the code locally.
       * In the project folder, ensure the venv directory was created
       * Activate the virtual environment using       
         ```powershell
-        . .\venv\Scripts\Activate.ps1
+         .\webApp-env\Scripts\Activate.ps1
         ```        
-    Activate using Linux
+   On Unix or MacOS, run:
       * In a terminal window, cd to the project directory and run:        
-        ```bsh
-        . venv/bin/activate
+        ```
+        source webApp-env/bin/activate
         ```
 
 3. Upgrade pip and install project's requirenments
    ```sh
-    pip install --upgrade pip
-    pip install -r requirenments.txt 
+    pip3 install --upgrade pip
+    pip3 install -r requirenments.txt 
     ```
 4. Create the following environment variables:
   * It is important not to hardcode the api keys directly in any source file

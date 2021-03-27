@@ -4,6 +4,17 @@ import math
 from . import dashboard_api_v0, dashboard_api_v1, organization_data
 
 
+def get_apiuser_name (api_key, organization_id)
+    apiUserId = getApiId(api_key, organization_id)
+        # Get Org Admins to find the matching one
+    admins = getorgadmins(apikey, orgid) 
+    apiUser = admins[0]
+
+    for i in admins:
+          if admins[i].id == apiUserId.adminId:
+               apiUser = admins[i]
+    return apiUser.get('name')
+
 def get_org_name(api_key, organization_id):
     organization = dashboard_api_v0.getorg(api_key, organization_id)
     return organization.get('name')
@@ -206,7 +217,7 @@ def get_number_of_pages(api_key, org_id):
 
 
 # Filter Uplinks
-# Determine the loss average of each uplink
+# Determine the Packet loss average of each uplink
 def get_loss_average(uplink):
     _sum = 0
     count = 0
@@ -273,7 +284,7 @@ def get_organization_uplinks(apikey, organization_id, clean_networks_dict):
     return filtered_devices
 
 
-# Assigned value to network depending on latency, loss and active wans
+# Assigned value to network depending on latency, packet loss and active wans
 def valued_networks(clean_networks, loss_tolerance, latency_tolerance, filter_critical=False):
     if filter_critical:
         critical_networks = clean_networks.copy()

@@ -1225,6 +1225,38 @@ def deladmin(apikey, orgid, adminid, suppressprint=False):
     return result
 
 
+# Get Current API Key Information
+# 
+def getApiId(apikey, orgid, suppressprint=False):
+    #
+    # Confirm API Key has Admin Access Otherwise Raise Error
+    #
+    __hasorgaccess(apikey, orgid)
+    calltype = 'Administrator'
+    
+    # Run once ApiRequests
+    geturl = '{0}/organizations/{1}/apiRequests?timespan=3'.format(str(base_url), str(orgid), str(adminid))
+    headers = {
+        'x-cisco-meraki-api-key': format(str(apikey)),
+        'Content-Type': 'application/json'
+    }
+    apiRequests = requests.get(geturl, headers=headers)
+    
+    # Run twice apiRequests to get the last request from this API ID
+    geturl = '{0}/organizations/{1}/apiRequests?timespan=3&path=/api/v0/organizations/{1}/apiRequests'.format(str(base_url), str(orgid), str(adminid))
+    headers = {
+        'x-cisco-meraki-api-key': format(str(apikey)),
+        'Content-Type': 'application/json'
+    }
+    apiRequests = requests.get(geturl, headers=headers)
+    
+    #
+    # Call return handler function to parse Dashboard response
+    #
+    result = __returnhandler(apiRequests.status_code, apiRequests[0].text, calltype, suppressprint)
+    return result
+
+
 ### CLIENTS ###
 
 # List the clients of a device, up to a maximum of a month ago. The usage of each client is returned in kilobytes. If the device is a switch, the switchport is returned; otherwise the switchport field is null.
@@ -1565,7 +1597,7 @@ def getdeviceuplink(apikey, networkid, serialnumber, suppressprint=False):
     return result
 
 
-# Get Organization Uplinks Loss And Latency
+# Get Organization Uplinks's Packet Loss And Latency
 # https://developer.cisco.com/meraki/api/#!get-organization-uplinks-loss-and-latency
 def getOrganizationUplinksLossAndLatency(apikey, organizationid, suppressprint=False):
     calltype = 'Organization Uplinks'

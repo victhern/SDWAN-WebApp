@@ -14,12 +14,13 @@ def init():
     here_maps_api_key = os.getenv("HERE_MAPS_API_KEY")
 
     # Default values for organization
-    loss_tolerance = 50
+    loss_tolerance = 5
     latency_tolerance = 120
     organization_name = helpers.get_org_name(api_key, organization_id)
     logo_path = os.getenv("LOGO_URL")
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
+    apiUserName = helpers.get_apiuser_name(api_key,organization_id)
     organizations = helpers.get_organizations(api_key)
     clean_organizations = helpers.get_clean_organizations(organizations)
     networks = helpers.get_org_networks(api_key, organization_id)

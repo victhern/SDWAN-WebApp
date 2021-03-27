@@ -17,8 +17,8 @@ For simplicity, HTML files use inheritance. The base template defines the sideba
 
 ## Personalization
 This app can be deployed for different companies. To adapt the app for different companies the following components must be modified in the App Settings tab:
-* Loss tolerance
-* Latency tolerance
+* Packet Loss threshold
+* Latency threshold
 * Company name
 * Company logo
 
@@ -154,8 +154,8 @@ As of now, there’s no confirmation page saying that changes were made successf
 The Map Monitoring module is perhaps the most relevant module in the app right now. It provides a quick overview of the health of all MX devices within an organization. The map shown on this module color codes all the MX devices. There are five different colors, which represent the following:
  * Green: Everything OK
  * Blue: Only one WAN uplink operational
- * Yellow: Latency above specified tolerance
- * Orange: Loss below specified tolerance
+ * Yellow: Latency above specified threshold
+ * Orange: Packet Loss below specified threshold
  * Red: No WAN Connectivity
 
 For simplicity, in the map view, close MX devices are grouped together. If at least one MX device within a cluster has a condition different than green, the cluster will be color coded as yellow. When zooming in, clusters break down into smaller cluster if devices are still close the one from each other. If devices are not relatively close, the cluster no longer appears, and instead a rectangle displaying the MX status is shown.

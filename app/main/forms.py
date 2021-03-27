@@ -211,7 +211,9 @@ class SettingsForm(FlaskForm):
         super(SettingsForm, self).__init__()
         self.org_select.choices = organizations
 
-    loss_field = IntegerField('Loss Tolerance')
-    latency_field = IntegerField('Latency Tolerance')
+
+    loss_field = IntegerField('Packet Loss Threshold')
+    latency_field = IntegerField('Latency Threshold')
+    api_usr = StringField('API User name')
     org_name = StringField('Organization name')
     org_logo_file = FileField(u'Logo image file', [validators.regexp(r"\S+\.jpg")])

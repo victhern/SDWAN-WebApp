@@ -6,7 +6,7 @@
 <form method="POST" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-md-6">
-			<h3>Uplink loss and latency tolerances</h3>
+			<h3>Uplink packet loss and latency thresholds</h3>
 
 			<div class="form-group">
 				{{ form.loss_field.label }}
@@ -36,13 +36,24 @@
 					Must be a .jpg file
 				</small>			
 			</div>
+
+<!-- Current API User Name -->
 			<hr />
+			<h3>{{ form.api_usr.label }}</h3>
+			<p><label class="text-danger">Important:</label> All Requests will be sregistered at dashboard under this name</p>
+			<div class="form-group">
+				{{ api_usr }}
+			</div>
+
+<!-- Organization Selection to Create a new Subdomain -->
+<!--			<hr />
 			<h3>{{ form.org_select.label }}</h3>
 			<p><label class="text-danger">Important:</label> The organization Id is ultimately set using environment variables.</p>
 			<p><b>Changing the organization using this form will update the organization temporarily until the server resets or is updated</b></p>
 			<div class="form-group">
 				{{ form.org_select(class_="custom-select") }}
 			</div>
+-->
 		</div>
 	</div>
 	<div id="loading-animation-text" class="d-none">

@@ -551,7 +551,7 @@ def app_settings():
 
     form = SettingsForm(organization_data.clean_organizations)
     return render_template('settings.html', tabSubject="App Settings", form=form, loss=organization_data.loss_tolerance,
-                           latency=organization_data.latency_tolerance, org_name=organization_data.organization_name)
+                           latency=organization_data.latency_tolerance, org_name=organization_data.organization_name, api_usr=organization_data.apiUserName)
 
 
 def allowed_file(filename):

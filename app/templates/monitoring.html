@@ -31,11 +31,11 @@
                                           </li>                     
                                           <li class="list-group-item">
                                                 <span style="width: 5em;" class="badge badge-pill badge-warning">Yellow</span>
-                                                <b>Latency</b> above specified tolerance
+                                                <b>Latency</b> above specified threshold
                                           </li>                     
                                           <li class="list-group-item">
                                                 <span style="width: 5em;" class="badge badge-pill badge-orange">Orange</span>
-                                                <b>Packet loss</b> above specified tolerance
+                                                <b>Packet loss</b> above specified threshold
                                           </li>                     
                                           <li class="list-group-item">
                                                 <span style="width: 5em;" class="badge badge-pill badge-danger">Red</span>
@@ -58,10 +58,7 @@
             {% if current_user.can(Permission.APP_SETTINGS) %}
             <div class="card">
                   <div class="card-body">
-                        <p>You can change Latency and Loss percentage tolerances in the settings page</p>
-                        <a href="/appSettings" class="btn btn-secondary btn-block">
-                              Go to application settings
-                        </a>
+                        <p>You can customize Latency and Packet Loss threshold values at the <a href="/appSettings" class="btn btn-secondary btn-block">settings</a> page</p>
                   </div>
             </div>
             {% endif %}

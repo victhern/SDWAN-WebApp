@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Map Monitoring{% endblock %}
+{% block title %}Admin Managemen{% endblock %}
 
 {% block page_content %}
 <form method="POST" enctype="multipart/form-data">
@@ -62,24 +62,4 @@
 	<button onclick="ToggleLoadingAnimation()" type="submit" class="btn btn-success">Update settings</button>
 </form>
 
-{% endblock %}
-
-{% block head %}
-{{super()}}
-<!-- Here Maps API-->
-<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
-
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-clustering.js"></script>
-{% endblock %}
-
-{% block extrascripts %}
-<!-- Here mapsApi default code -->
-<script type="text/javascript" src="static/js/mapsApi.js"></script>
-
-<!-- Monitoring Script -->
-<script type="text/javascript" src="static/js/monitoring.js"></script>
 {% endblock %}

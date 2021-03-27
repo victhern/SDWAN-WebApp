@@ -54,12 +54,16 @@
                 Switchover</a>
             {% endif %}
             {% if current_user.can(Permission.MAP_MONITORING) %}
-            <a href="{{ url_for('main.map_monitoring') }}" class="list-group-item list-group-item-action">Map
+            <a href="{{ url_for('main.map_monitoring') }}" class="list-group-item list-group-item-action">SD-WAN
                 Monitoring</a>
             {% endif %}
             {% if current_user.can(Permission.MAP_MONITORING) %}
             <a href="{{ url_for('main.notification_center') }}" class="list-group-item list-group-item-action">
                 Notification Center</a>
+            {% endif %}
+            {% if current_user.can(Permission.ADMIN_MANAGE) %}
+            <a href="{{ url_for('main.admin_management') }}" class="list-group-item list-group-item-action">Admin
+                Management</a>
             {% endif %}
 
             {% else %}

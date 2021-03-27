@@ -55,7 +55,7 @@ The following list ilustrates how to run the code locally.
 3. Upgrade pip and install project's requirenments
    ```sh
     pip3 install --upgrade pip
-    pip3 install -r requirenments.txt 
+    pip3 install -r requirements.txt 
     ```
 4. Create the following environment variables:
   * It is important not to hardcode the api keys directly in any source file

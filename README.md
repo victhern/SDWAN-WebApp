@@ -15,14 +15,14 @@ The web application structure is based on a clean architecture template based on
 ###### A note on HTML Files
 For simplicity, HTML files use inheritance. The base template defines the sidebar and other items that remain the same accross all pages. The other HTML files within the templates folder extend the base file, and therefore redefine the body of the HTML.
 
-## Personalization
+## Customization
 This app can be deployed for different companies. To adapt the app for different companies the following components must be modified in the App Settings tab:
 * Packet Loss threshold
 * Latency threshold
 * Company name
 * Company logo
 
-After wirting the information required and uploading the company logo, it is necessary to submit the changes for the web app to change its template with the personalized information. 
+After wirting the information required and uploading the company logo, it is necessary to submit the changes for the web app to change its template with the customized information. 
 
 
 ## How to run:

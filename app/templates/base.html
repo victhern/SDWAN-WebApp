@@ -20,7 +20,7 @@
 <!-- Custom styles -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-<title>{% block title %}{% endblock %} - Demo</title>
+<title>{% block title %}{% endblock %} - Meraki Demo</title>
 {% endblock %}
 
 {% block content %}
@@ -92,7 +92,7 @@
                     <div class="dropdown-menu" style="position: absolute; right: 0; left: auto;" aria-labelledby="navbarDropdown">
                         {% if current_user.can(Permission.APP_SETTINGS) %}
                         <a href="{{ url_for('main.update_org_data')}}" class="dropdown-item"
-                            style="background-color: #6FB73A;">Update Organization</a>
+                            style="background-color: #6FB73A;">Organization Update/Change</a>
                         <a href="{{ url_for('main.app_settings') }}" class="dropdown-item">App Settings</a>
                         {% endif %}
                         <a href="{{ url_for('auth.users') }}" class="dropdown-item">Users</a>

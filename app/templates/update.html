@@ -6,6 +6,13 @@
 <form method="POST" enctype="multipart/form-data">
 	<div class="row">		
         <div class="col-md-4">            
+            <hr />
+            <h3>{{ form.org_select.label }}</h3>
+            <p><label class="text-danger">Important:</label> The organization Id is ultimately set using environment variables.</p>
+            <p><b>Changing the organization using this form will update the organization temporarily until the server resets or is updated</b></p>
+            <div class="form-group">
+                {{ form.org_select(class_="custom-select") }}
+            </div>
             <p>Are you sure you want to update this organization's data?</p>
             <p><b>Updating may take a few minutes and you won't be able to use the application</b></p>
             <div id="loading-animation" class="lds-ring d-none">

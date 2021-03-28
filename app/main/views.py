@@ -3,7 +3,7 @@ from flask import render_template, redirect, current_app, request, flash, Markup
 from flask_login import login_required
 from . import main
 from .forms import AddProvisionForm, CreateProvisionForm, ReplaceDevice, SSIDForm, BulkForm, \
-    NetworkSummaryForm, HubSummaryForm, SettingsForm
+    NetworkSummaryForm, HubSummaryForm, UpdateOrgForm, SettingsForm
 
 from werkzeug.utils import secure_filename
 
@@ -553,7 +553,7 @@ def admin_management():
 @permission_required(Permission.APP_SETTINGS)
 def app_settings():
     if request.method == 'POST':
-        change_org_settings(request.form, request.files)
+        change_app_settings(request.form, request.files)
         flash("Operation completed")
         return redirect('/appSettings')
 
@@ -561,16 +561,7 @@ def app_settings():
     return render_template('settings.html', tabSubject="App Settings", form=form, loss=organization_data.loss_tolerance,
                            latency=organization_data.latency_tolerance, org_name=organization_data.organization_name, api_usr=organization_data.apiUserName)
 
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in organization_data.ALLOWED_EXTENSIONS
-
-# Organization Update
-@main.route('/updateOrganization', methods=['GET', 'POST'])
-@login_required
-@permission_required(Permission.ADD_USERS)
-def change_org_settings(form, files):
+def change_app_settings(form, files):
     try:
         organization_data.loss_tolerance = int(request.form["loss_field"])
         organization_data.latency_tolerance = int(request.form["latency_field"])
@@ -578,11 +569,6 @@ def change_org_settings(form, files):
         organization_data.valued_networks = helpers.valued_networks(organization_data.filtered_uplinks,
                                                                     organization_data.loss_tolerance,
                                                                     organization_data.latency_tolerance, True)
-
-        if form["org_select"]:
-            organization_data.organization_id = form["org_select"]
-            os.environ['ORGANIZATION_ID'] = organization_data.organization_id
-            helpers.update_organization_data()
 
         if 'org_logo_file' in files:
             file = request.files['org_logo_file']
@@ -594,13 +580,32 @@ def change_org_settings(form, files):
             organization_data.logo_path = "/static/images/" + filename
 
     except:
-        flash("Error updating organization")
+        flash("Error updating application")
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in organization_data.ALLOWED_EXTENSIONS
+
+# Organization Update
+@main.route('/updateOrganization', methods=['GET', 'POST'])
+@login_required
+@permission_required(Permission.ADD_USERS)
 def update_org_data():
     if request.method == 'POST':
+        change_org_settings(request.form)
         helpers.update_organization_data()
-
         flash('Organization data updated!')
         return redirect('updateOrganization')
+    form = UpdateOrgForm(organization_data.clean_organizations)
+    return render_template('update.html', tabSubject="Organization Change or Update", form=form)
 
-    return render_template('update.html', tabSubject="Organization Update")
+def change_org_settings(form):
+    try:
+
+        if form["org_select"]:
+            organization_data.organization_id = form["org_select"]
+            os.environ['ORGANIZATION_ID'] = organization_data.organization_id
+            
+    except:
+        flash("Error updating organization")

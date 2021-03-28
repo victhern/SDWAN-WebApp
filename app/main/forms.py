@@ -204,14 +204,14 @@ class HubSummaryForm(FlaskForm):
         self.hub_select.choices = cleanhubs
 
 
-class SettingsForm(FlaskForm):
+class UpdateOrgForm(FlaskForm):
     org_select = SelectField(u'Organization', choices=None)
 
     def __init__(self, organizations):
-        super(SettingsForm, self).__init__()
+        super(UpdateOrgForm, self).__init__()
         self.org_select.choices = organizations
 
-
+class SettingsForm(FlaskForm):
     loss_field = IntegerField('Packet Loss Threshold')
     latency_field = IntegerField('Latency Threshold')
     api_usr = StringField('API User name')

@@ -91,8 +91,7 @@
                     </a>
                     <div class="dropdown-menu" style="position: absolute; right: 0; left: auto;" aria-labelledby="navbarDropdown">
                         {% if current_user.can(Permission.APP_SETTINGS) %}
-                        <a href="{{ url_for('main.update_org_data')}}" class="dropdown-item"
-                            style="background-color: #6FB73A;">Organization Update/Change</a>
+                        <a href="{{ url_for('main.update_org_data')}}" class="dropdown-item">Organization Change or Update</a>
                         <a href="{{ url_for('main.app_settings') }}" class="dropdown-item">App Settings</a>
                         {% endif %}
                         <a href="{{ url_for('auth.users') }}" class="dropdown-item">Users</a>

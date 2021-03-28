@@ -36,7 +36,7 @@ def logout():
 
 @auth.route('/register', methods=['GET', 'POST'])
 @login_required
-@permission_required(Permission.ADD_USERS)
+@permission_required(Permission.ADMIN_MANAGE)
 def register():
     roles = Role.query.all()
     form = RegistrationForm(roles)
@@ -67,7 +67,7 @@ def users():
 
 @auth.route('/changeUserRole', methods=['GET', 'POST'])
 @login_required
-@permission_required(Permission.ADD_USERS)
+@permission_required(Permission.ADMIN_MANAGE)
 def change_user_role():
     roles = Role.query.all()
     form = ChangeRoleForm(roles)
@@ -88,7 +88,7 @@ def change_user_role():
 
 @auth.route('/deleteUser', methods=['GET', 'POST'])
 @login_required
-@permission_required(Permission.ADD_USERS)
+@permission_required(Permission.ADMIN_MANAGE)
 def delete_user():
     user_id = int(request.args.get('userid'))
 

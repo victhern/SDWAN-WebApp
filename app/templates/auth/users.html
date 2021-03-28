@@ -4,7 +4,7 @@
 
 {% block page_content %}
 
-{% if current_user.can(Permission.ADD_USERS) %}
+{% if current_user.can(Permission.ADMIN_MANAGE) %}
 <a href="{{ url_for('auth.register') }}" class="btn btn-primary mb-3">Register user</a>
 {% endif %}
 

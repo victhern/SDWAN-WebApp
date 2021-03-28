@@ -5,17 +5,20 @@ from . import db, login_manager
 
 
 class Permission:
-    ADD_DEVICES = 1
-    CREATE_NETWORK = 2
-    REPLACE_DEVICES = 4
-    LOAD_BALANCING = 8
-    UPDATE_SSID = 16
-    BULK_CHANGE = 32
-    DC_SWITCHOVER = 64
-    MAP_MONITORING = 128
-    ADD_USERS = 256
-    APP_SETTINGS = 512
-    ADMIN_MANAGE = 1024
+    MAP_MONITORING = 1
+    NOTICE_CENTER = 2
+    ADMIN_VIEW = 4
+    ADD_DEVICES = 8
+    CREATE_NETWORK = 16
+    REPLACE_DEVICES = 32
+    UPDATE_SSID = 64
+    BULK_CHANGE = 128
+    DC_SWITCHOVER = 256
+    LOAD_BALANCING = 512
+    APP_SETTINGS = 1024
+    ADMIN_MANAGE = 2048
+    ORG_UPDATE = 4096
+
 
 
 class Role(db.Model):
@@ -48,17 +51,19 @@ class Role(db.Model):
     @staticmethod
     def insert_roles():
         roles = {
-            'Field': [Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
-                      Permission.LOAD_BALANCING, Permission.MAP_MONITORING],
-            'View-only': [Permission.MAP_MONITORING],
-            'Privileged': [Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
-                           Permission.LOAD_BALANCING, Permission.BULK_CHANGE, Permission.DC_SWITCHOVER,
-                           Permission.MAP_MONITORING],
-            'Administrator': [Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
-                              Permission.LOAD_BALANCING, Permission.BULK_CHANGE, Permission.DC_SWITCHOVER,
-                              Permission.MAP_MONITORING, Permission.ADD_USERS, Permission.APP_SETTINGS, Permission.ADMIN_MANAGE]
+            'Monitor': [Permission.MAP_MONITORING, Permission.NOTICE_CENTER, Permission.ADMIN_VIEW],
+            'Field': [Permission.MAP_MONITORING, Permission.NOTICE_CENTER, Permission.ADMIN_VIEW,
+                      Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
+                      Permission.UPDATE_SSID],
+            'Privileged': [Permission.MAP_MONITORING, Permission.NOTICE_CENTER, Permission.ADMIN_VIEW,
+                      Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
+                      Permission.UPDATE_SSID, Permission.BULK_CHANGE, Permission.DC_SWITCHOVER],
+            'Administrator': [Permission.MAP_MONITORING, Permission.NOTICE_CENTER, Permission.ADMIN_VIEW,
+                      Permission.ADD_DEVICES, Permission.CREATE_NETWORK, Permission.REPLACE_DEVICES,
+                      Permission.UPDATE_SSID, Permission.BULK_CHANGE, Permission.DC_SWITCHOVER, 
+                      Permission.APP_SETTINGS, Permission.ADMIN_MANAGE, Permission.ORG_UPDATE]
         }
-        default_role = 'View-only'
+        default_role = 'Monitor'
 
         for r in roles:
             role = Role.query.filter_by(name=r).first()

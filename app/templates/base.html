@@ -57,13 +57,14 @@
             <a href="{{ url_for('main.map_monitoring') }}" class="list-group-item list-group-item-action">SD-WAN
                 Monitoring</a>
             {% endif %}
-            {% if current_user.can(Permission.MAP_MONITORING) %}
+            {% if current_user.can(Permission.NOTICE_CENTER) %}
             <a href="{{ url_for('main.notification_center') }}" class="list-group-item list-group-item-action">
                 Notification Center</a>
             {% endif %}
-            {% if current_user.can(Permission.ADMIN_MANAGE) %}
-            <a href="{{ url_for('main.admin_management') }}" class="list-group-item list-group-item-action">Admin
-                Management</a>
+            <br>
+            {% if current_user.can(Permission.ADMIN_VIEW) %}
+            <a href="{{ url_for('main.admin_view') }}" class="list-group-item list-group-item-action">Organizations
+                Admins</a>
             {% endif %}
 
             {% else %}
@@ -90,11 +91,15 @@
                         {{ current_user.email }}
                     </a>
                     <div class="dropdown-menu" style="position: absolute; right: 0; left: auto;" aria-labelledby="navbarDropdown">
-                        {% if current_user.can(Permission.APP_SETTINGS) %}
+                        {% if current_user.can(Permission.ORG_UPDATE) %}
                         <a href="{{ url_for('main.update_org_data')}}" class="dropdown-item">Organization Change or Update</a>
+                        {% endif %}
+                        {% if current_user.can(Permission.APP_SETTINGS) %}
                         <a href="{{ url_for('main.app_settings') }}" class="dropdown-item">App Settings</a>
                         {% endif %}
-                        <a href="{{ url_for('auth.users') }}" class="dropdown-item">Users</a>
+                        {% if current_user.can(Permission.ADMIN_MANAGE) %}
+                        <a href="{{ url_for('auth.users') }}" class="dropdown-item">Admin Management</a>
+                        {% endif %}
                         <div class="dropdown-divider"></div>
                         <a href="{{ url_for('auth.logout') }}" class="dropdown-item">Log Out</a>
                     </div>

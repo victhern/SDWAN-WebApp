@@ -529,11 +529,11 @@ def map_monitoring():
 
     return render_template('monitoring.html', tabSubject="SD-WAN Monitoring")
 
-# Admin Management module
-@main.route('/adminMgmt', methods=['GET'])
+# Admin List View module
+@main.route('/adminView', methods=['GET'])
 @login_required
-@permission_required(Permission.ADMIN_MANAGE)
-def admin_management():
+@permission_required(Permission.ADMIN_VIEW)
+def admin_view():
     faulty_filter = request.args.get('filter')
     if faulty_filter is not None:
         if "True" in faulty_filter:
@@ -545,7 +545,7 @@ def admin_management():
                                                                     organization_data.loss_tolerance,
                                                                     organization_data.latency_tolerance, False)
 
-    return render_template('adminManage.html', tabSubject="Admin Management")
+    return render_template('adminView.html', tabSubject="Admin List View")
 
 # App Settings module
 @main.route('/appSettings', methods=['GET', 'POST'])
@@ -590,7 +590,7 @@ def allowed_file(filename):
 # Organization Update
 @main.route('/updateOrganization', methods=['GET', 'POST'])
 @login_required
-@permission_required(Permission.ADD_USERS)
+@permission_required(Permission.ADMIN_MANAGE)
 def update_org_data():
     if request.method == 'POST':
         change_org_settings(request.form)

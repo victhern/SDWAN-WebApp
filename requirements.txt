@@ -22,6 +22,8 @@ Flask-Moment==0.10.0
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
+Flask-Babel
+Flask-Table
 html5lib==1.0.1
 idna==2.10
 ipaddr==2.2.0

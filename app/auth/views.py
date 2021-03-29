@@ -1,5 +1,6 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_user, logout_user, login_required
+from flask_table import Table, Col
 
 from . import auth
 from .. import db
@@ -7,6 +8,7 @@ from ..decorators import permission_required
 from ..models import User, Permission, Role
 
 from .forms import LoginForm, RegistrationForm, ChangeRoleForm
+
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -37,8 +39,18 @@ def logout():
 @auth.route('/register', methods=['GET', 'POST'])
 @login_required
 @permission_required(Permission.ADMIN_MANAGE)
+
+class ItemTable(Table):
+    monitor_rol = Col('Monitor')
+    field_rol = Col('Field')
+    priv_rol = Col('Privileged')
+    admin_rol = Col('Administrator')
+
 def register():
+    #Extract rol information from models to create a Rol Table
     roles = Role.query.all()
+    # Create a Rol Table for reference
+    rol_table = ItemTable(roles) 
     form = RegistrationForm(roles)
     if form.validate_on_submit():
         user = User(email=form.email.data.lower(),
@@ -54,8 +66,8 @@ def register():
         flash('User added correctly!')
 
         form = RegistrationForm(roles)
-        return render_template('auth/register.html', form=form)
-    return render_template('auth/register.html', form=form)
+        return render_template('auth/register.html', form=form, rol_table=rol_table)
+    return render_template('auth/register.html', form=form, rol_table=rol_table)
 
 
 @auth.route('/users', methods=['GET'])

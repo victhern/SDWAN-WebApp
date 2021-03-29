@@ -441,7 +441,7 @@ def submit():
 # Notification center module
 @main.route('/notifications', methods=['GET'])
 @login_required
-@permission_required(Permission.MAP_MONITORING)
+@permission_required(Permission.NOTICE_CENTER)
 def notification_center():
     return render_template('notificationCenter.html', notifications=organization_data.latest_notifications,
                            tabSubject="Notification Center")

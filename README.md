@@ -1,5 +1,5 @@
 # Meraki SDWAN Extended Automation
-This project builds on top of previous developments made by Shiyue Chen. The original web app can be found at https://github.com/shiyuechengineer/meraki-api-demo/tree/master/web_ui. In general terms, this new version includes a new look, as well as the addition of two new functionalities: DC Switchover and Map Monitoring.
+This project builds on top of previous developments made by Jose Miguel Perez. The original web app can be found at https://github.com/jperezsan/meraki-webapp-flask.git  with some enhancements. In general terms, this new version includes a new look, as well as the addition of two new functionalities: DC Switchover and Map Monitoring.
 
 ## Internal Structure and File Organization
 The web application structure is based on a clean architecture template based on the Flask Web Development 2nd edition book by Miguel Grinberg:
